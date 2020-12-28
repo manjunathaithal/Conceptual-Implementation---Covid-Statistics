@@ -12,7 +12,7 @@ app.get("/totalRecovered", async (req, res) => {
   const value = await connection.aggregate([
     { $group: { _id: "total", recovered: { $sum: "$recovered" } } },
   ]);
-  res.send({ data: value });
+  res.send({ data: value[0] });
 });
 
 app.get("/totalActive", async (req, res) => {
@@ -24,7 +24,7 @@ app.get("/totalActive", async (req, res) => {
     },
     { $group: { _id: "total", active: { $sum: "$active" } } },
   ]);
-  res.send({ data: value });
+  res.send({ data: value[0] });
 });
 
 app.get("/totalDeath", async (req, res) => {
@@ -33,7 +33,7 @@ app.get("/totalDeath", async (req, res) => {
       $group: { _id: "total", death: { $sum: "$death" } },
     },
   ]);
-  res.send({ data: value });
+  res.send({ data: value[0] });
 });
 
 app.get("/hotspotStates", async (req, res) => {
