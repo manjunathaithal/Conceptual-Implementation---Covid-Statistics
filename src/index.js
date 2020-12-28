@@ -59,11 +59,11 @@ app.get("/hotspotStates", async (req, res) => {
         _id: 0,
         state: "$state",
         // infected: "$infected",
-        hotspot: { $round: ["$hotspot", 5] },
+        rate: { $round: ["$hotspot", 5] },
       },
     },
     {
-      $match: { hotspot: { $gt: 0.1 } },
+      $match: { rate: { $gt: 0.1 } },
     },
   ]);
   res.send({ data: value });
